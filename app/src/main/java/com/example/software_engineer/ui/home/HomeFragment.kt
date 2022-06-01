@@ -1,6 +1,8 @@
 package com.example.software_engineer.ui.home
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +12,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.software_engineer.UsrURL
 import com.example.software_engineer.databinding.FragmentHomeBinding
+import com.example.software_engineer.moshi
+import com.example.software_engineer.ui.user
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody.Companion.toRequestBody
 import kotlin.concurrent.thread
+
+
 fun Fragment?.runOnUiThread(action: () -> Unit) {
     this ?: return
     if (!isAdded) return // Fragment not attached to an Activity
@@ -43,15 +53,19 @@ class HomeFragment : Fragment() {
         }
         val button:Button=binding.login
         button.setOnClickListener{
-            sendRequestWithHttpURL()
+            sendRequestWithHttpURL(binding.signInAccount.text.toString(),binding.signInPassWord.text.toString())
         }
         return root
     }
-    private fun sendRequestWithHttpURL() {
+    private fun sendRequestWithHttpURL(name:String,passwd:String) {
         thread {
             try {
+           val usrA= moshi.adapter(user::class.java)
+                val mediaType = "application/json; charset=utf-8".toMediaType()
+                val requestBody =  usrA.toJson(user(name,passwd)).toRequestBody(mediaType)
+                Log.d(TAG, "sendRequestWithHttpURL: usr(name,passwd).toString"+usrA.toJson(user(name,passwd)))
                 val client=OkHttpClient()
-                val request=Request.Builder().url(UsrURL+"/register").build()
+                val request=Request.Builder().url("$UsrURL/register").post(requestBody).build()
                 val response=client.newCall(request).execute()
                 val responseData=response.body?.string()
                 if (responseData!=null){
