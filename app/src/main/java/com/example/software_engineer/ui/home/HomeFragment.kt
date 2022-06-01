@@ -53,11 +53,14 @@ class HomeFragment : Fragment() {
         }
         val button:Button=binding.login
         button.setOnClickListener{
-            sendRequestWithHttpURL(binding.signInAccount.text.toString(),binding.signInPassWord.text.toString())
+            sendRequestWithHttpURL(binding.signInAccount.text.toString(),binding.signInPassWord.text.toString(),"login")
+        }
+        binding.register.setOnClickListener {
+            sendRequestWithHttpURL(binding.signInAccount.text.toString(),binding.signInPassWord.text.toString(),"register")
         }
         return root
     }
-    private fun sendRequestWithHttpURL(name:String,passwd:String) {
+    private fun sendRequestWithHttpURL(name:String,passwd:String,type:String) {
         thread {
             try {
            val userParamAdapter= moshi.adapter(userParam::class.java)
@@ -66,7 +69,7 @@ class HomeFragment : Fragment() {
                 val requestBody =  userParamAdapter.toJson(userParam(name,passwd)).toRequestBody(mediaType)
                 Log.d(TAG, "sendRequestWithHttpURL: usr(name,passwd).toString"+userParamAdapter.toJson(userParam(name,passwd)))
                 val client=OkHttpClient()
-                val request=Request.Builder().url("$UsrURL/register").post(requestBody).build()
+                val request=Request.Builder().url("$UsrURL/$type").post(requestBody).build()
                 val response=client.newCall(request).execute()
                 val responseData=response.body?.string()
                 if (responseData!=null){
