@@ -5,7 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
+import com.example.software_engineer.CarURL
 import com.example.software_engineer.R
+import com.example.software_engineer.TheToken
+import com.example.software_engineer.moshi
+import com.example.software_engineer.ui.addCarResp
+import com.example.software_engineer.ui.home.runOnUiThread
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import okhttp3.internal.EMPTY_REQUEST
+import kotlin.concurrent.thread
 
 /**
  * A simple [Fragment] subclass.
@@ -14,29 +27,45 @@ import com.example.software_engineer.R
  */
 class CarFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    lateinit var  carBatteryCP :EditText
+    lateinit var  button:Button
+    lateinit var  answer:TextView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_car, container, false)
+        val view =inflater.inflate(R.layout.fragment_car, container, false)
+        carBatteryCP=view.findViewById(R.id.batteryCap)
+        answer=view.findViewById(R.id.carAddAnswer)
+        button=view.findViewById(R.id.addCar)
+        button.setOnClickListener { addCar(carBatteryCP.text.toString()) }
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @return A new instance of fragment CarFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CarFragment().apply {
+
+    private fun addCar(cap:String) {
+        thread {
+            try {
+                val RespAdapter= moshi.adapter(addCarResp::class.java)
+                val client= OkHttpClient()
+                val empty: RequestBody = EMPTY_REQUEST
+                val request= Request.Builder(). url("$CarURL?token=$TheToken&cap=$cap").post(empty).build()
+                val response=client.newCall(request).execute()
+                val responseData=response.body?.string()
+                if (responseData!=null){
+                    val car=RespAdapter. fromJson(responseData)
+
+                    if (car!= null) {
+                        runOnUiThread{
+                            answer.text=car.status_msg+"  "+car.car_id
+                        }
+                    }
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
             }
+        }
     }
 }
