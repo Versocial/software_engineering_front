@@ -10,12 +10,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.software_engineer.TheToken
 import com.example.software_engineer.UsrURL
 import com.example.software_engineer.databinding.FragmentHomeBinding
 import com.example.software_engineer.moshi
-import com.example.software_engineer.ui.user
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import com.example.software_engineer.ui.userParam
+import com.example.software_engineer.ui.userResp
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.MediaType.Companion.toMediaType
@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
 
         val textView: TextView = binding.textHome
         homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = "ertete"
+            textView.text = it
         }
         val button:Button=binding.login
         button.setOnClickListener{
@@ -60,25 +60,34 @@ class HomeFragment : Fragment() {
     private fun sendRequestWithHttpURL(name:String,passwd:String) {
         thread {
             try {
-           val usrA= moshi.adapter(user::class.java)
+           val userParamAdapter= moshi.adapter(userParam::class.java)
+                val userRespAdapter= moshi.adapter(userResp::class.java)
                 val mediaType = "application/json; charset=utf-8".toMediaType()
-                val requestBody =  usrA.toJson(user(name,passwd)).toRequestBody(mediaType)
-                Log.d(TAG, "sendRequestWithHttpURL: usr(name,passwd).toString"+usrA.toJson(user(name,passwd)))
+                val requestBody =  userParamAdapter.toJson(userParam(name,passwd)).toRequestBody(mediaType)
+                Log.d(TAG, "sendRequestWithHttpURL: usr(name,passwd).toString"+userParamAdapter.toJson(userParam(name,passwd)))
                 val client=OkHttpClient()
                 val request=Request.Builder().url("$UsrURL/register").post(requestBody).build()
                 val response=client.newCall(request).execute()
                 val responseData=response.body?.string()
                 if (responseData!=null){
-                    showResponse(responseData)
+                    val user=userRespAdapter. fromJson(responseData)
+                    Log.d(TAG, "sendRequestWithHttpURL: userResp is"+user.toString())
+
+                    if (user != null) {
+                       if (user.status_code==0){
+                           TheToken=user.token
+                       }
+                        showResponse(user)
+                    }
                 }
             }catch (e:Exception){
                 e.printStackTrace()
             }
         }
     }
-    private fun showResponse(response:String){
+    private fun showResponse(response:userResp){
         runOnUiThread{
-        binding.textHome.text=response
+        binding.textHome.text=response.status_msg
         }
     }
     override fun onDestroyView() {
