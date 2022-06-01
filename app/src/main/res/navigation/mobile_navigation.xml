@@ -12,14 +12,19 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.software_engineer.ui.dashboard.DashboardFragment"
+        android:id="@+id/navigation_charge"
+        android:name="com.example.software_engineer.ui.charge.ChargeFragment"
         android:label="@string/充电"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_charge" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.software_engineer.ui.notifications.NotificationsFragment"
+        android:id="@+id/navigation_car"
+        android:name="com.example.software_engineer.ui.car.CarFragment"
+        android:label="@string/car"
+        tools:layout="@layout/fragment_car" />
+    <fragment
+        android:id="@+id/navigation_admin"
+        android:name="com.example.software_engineer.ui.admin.AdminFragment"
         android:label="@string/管理员"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_admin" />
 </navigation>

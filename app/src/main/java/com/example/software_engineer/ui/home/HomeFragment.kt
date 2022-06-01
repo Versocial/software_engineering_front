@@ -61,10 +61,10 @@ class HomeFragment : Fragment() {
         binding.register.setOnClickListener {
             sendRequestWithHttpURL(binding.signInAccount.text.toString(),binding.signInPassWord.text.toString(),"register")
         }
-
-        binding.addCar.setOnClickListener {
-            addCar(binding.batteryCap.text.toString())
-        }
+//
+//        binding.addCar.setOnClickListener {
+//            addCar(binding.batteryCap.text.toString())
+//        }
         return root
     }
     private fun sendRequestWithHttpURL(name:String,passwd:String,type:String) {
@@ -84,7 +84,7 @@ class HomeFragment : Fragment() {
                     Log.d(TAG, "sendRequestWithHttpURL: userResp is"+user.toString())
 
                     if (user != null) {
-                       if (user.status_code==0){
+                       if (user.status_code==200){
                            TheToken=user.token
                        }
                         showResponse(user,type)
@@ -96,27 +96,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun addCar(cap:String) {
-        thread {
-            try {
-                val RespAdapter= moshi.adapter(addCarResp::class.java)
-                val client=OkHttpClient()
-                val empty: RequestBody = EMPTY_REQUEST
-                val request=Request.Builder(). url("$CarURL?token=$TheToken&cap=$cap").post(empty).build()
-                val response=client.newCall(request).execute()
-                val responseData=response.body?.string()
-                if (responseData!=null){
-                    val car=RespAdapter. fromJson(responseData)
-
-                    if (car!= null) {
-                        showResponse(car,"addCar")
-                    }
-                }
-            }catch (e:Exception){
-                e.printStackTrace()
-            }
-        }
-    }
     private fun showResponse(response:BaseResp,type: String){
         runOnUiThread{
         binding.textHome.text=response.status_msg+"  "+type
