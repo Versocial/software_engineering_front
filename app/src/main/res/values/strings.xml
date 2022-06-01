@@ -6,4 +6,6 @@
     <string name="signInAccount">用户名</string>
     <string name="signInPassWord">密码</string>
     <string name="注册">注册</string>
+    <string name="addCar">添加车辆</string>
+    <string name="batterCap">电池容量</string>
 </resources>
