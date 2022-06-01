@@ -10,16 +10,19 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.software_engineer.CarURL
 import com.example.software_engineer.TheToken
 import com.example.software_engineer.UsrURL
 import com.example.software_engineer.databinding.FragmentHomeBinding
 import com.example.software_engineer.moshi
-import com.example.software_engineer.ui.userParam
-import com.example.software_engineer.ui.userResp
+import com.example.software_engineer.ui.*
+import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import okhttp3.internal.EMPTY_REQUEST
 import kotlin.concurrent.thread
 
 
@@ -58,6 +61,10 @@ class HomeFragment : Fragment() {
         binding.register.setOnClickListener {
             sendRequestWithHttpURL(binding.signInAccount.text.toString(),binding.signInPassWord.text.toString(),"register")
         }
+
+        binding.addCar.setOnClickListener {
+            addCar(binding.batteryCap.text.toString())
+        }
         return root
     }
     private fun sendRequestWithHttpURL(name:String,passwd:String,type:String) {
@@ -80,7 +87,7 @@ class HomeFragment : Fragment() {
                        if (user.status_code==0){
                            TheToken=user.token
                        }
-                        showResponse(user)
+                        showResponse(user,type)
                     }
                 }
             }catch (e:Exception){
@@ -88,9 +95,31 @@ class HomeFragment : Fragment() {
             }
         }
     }
-    private fun showResponse(response:userResp){
+
+    private fun addCar(cap:String) {
+        thread {
+            try {
+                val RespAdapter= moshi.adapter(addCarResp::class.java)
+                val client=OkHttpClient()
+                val empty: RequestBody = EMPTY_REQUEST
+                val request=Request.Builder(). url("$CarURL?token=$TheToken&cap=$cap").post(empty).build()
+                val response=client.newCall(request).execute()
+                val responseData=response.body?.string()
+                if (responseData!=null){
+                    val car=RespAdapter. fromJson(responseData)
+
+                    if (car!= null) {
+                        showResponse(car,"addCar")
+                    }
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+            }
+        }
+    }
+    private fun showResponse(response:BaseResp,type: String){
         runOnUiThread{
-        binding.textHome.text=response.status_msg
+        binding.textHome.text=response.status_msg+"  "+type
         }
     }
     override fun onDestroyView() {
