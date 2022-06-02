@@ -10,11 +10,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.software_engineer.CarURL
-import com.example.software_engineer.TheToken
-import com.example.software_engineer.UsrURL
+import com.example.software_engineer.*
 import com.example.software_engineer.databinding.FragmentHomeBinding
-import com.example.software_engineer.moshi
 import com.example.software_engineer.ui.*
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
@@ -84,8 +81,9 @@ class HomeFragment : Fragment() {
                     Log.d(TAG, "sendRequestWithHttpURL: userResp is"+user.toString())
 
                     if (user != null) {
-                       if (user.status_code==200){
+                       if (user.status_code==0){
                            TheToken=user.token
+                           isLogined=true
                        }
                         showResponse(user,type)
                     }

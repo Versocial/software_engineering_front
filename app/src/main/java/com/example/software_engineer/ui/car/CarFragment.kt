@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import com.example.software_engineer.CarURL
-import com.example.software_engineer.R
-import com.example.software_engineer.TheToken
-import com.example.software_engineer.moshi
+import android.widget.Toast
+import com.example.software_engineer.*
 import com.example.software_engineer.ui.addCarResp
 import com.example.software_engineer.ui.home.runOnUiThread
 import okhttp3.OkHttpClient
@@ -46,25 +44,34 @@ class CarFragment : Fragment() {
 
 
     private fun addCar(cap:String) {
-        thread {
-            try {
-                val RespAdapter= moshi.adapter(addCarResp::class.java)
-                val client= OkHttpClient()
-                val empty: RequestBody = EMPTY_REQUEST
-                val request= Request.Builder(). url("$CarURL?token=$TheToken&cap=$cap").post(empty).build()
-                val response=client.newCall(request).execute()
-                val responseData=response.body?.string()
-                if (responseData!=null){
-                    val car=RespAdapter. fromJson(responseData)
+        if(!isLogined){
+            runOnUiThread {
+                Toast.makeText(context,"请先登录！",Toast.LENGTH_SHORT).show()
+            }
+        }
+        else {
+            thread {
+                try {
+                    val RespAdapter = moshi.adapter(addCarResp::class.java)
+                    val client = OkHttpClient()
+                    val empty: RequestBody = EMPTY_REQUEST
+                    val request =
+                        Request.Builder().url("$CarURL?token=$TheToken&cap=$cap").post(empty)
+                            .build()
+                    val response = client.newCall(request).execute()
+                    val responseData = response.body?.string()
+                    if (responseData != null) {
+                        val car = RespAdapter.fromJson(responseData)
 
-                    if (car!= null) {
-                        runOnUiThread{
-                            answer.text=car.status_msg+"  "+car.car_id
+                        if (car != null) {
+                            runOnUiThread {
+                                answer.text = car.status_msg + "  " + car.car_id
+                            }
                         }
                     }
+                } catch (e: Exception) {
+                    e.printStackTrace()
                 }
-            }catch (e:Exception){
-                e.printStackTrace()
             }
         }
     }
