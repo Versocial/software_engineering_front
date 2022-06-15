@@ -11,4 +11,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="car">汽车管理</string>
+    <string name="fastCharge">快充</string>
+    <string name="slowCharge">慢充</string>
+    <string name="carId">车号</string>
+    <string name="chargeQuantity">充电量</string>
+    <string name="charge">请求充电</string>
 </resources>

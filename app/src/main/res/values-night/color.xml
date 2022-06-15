@@ -3,4 +3,5 @@
 <resources>
     <color name="background">#333333</color>
 
+    <color name="strokeA">@color/purple_200</color>
 </resources>

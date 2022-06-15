@@ -13,13 +13,10 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.software_engineer.*
 import com.example.software_engineer.databinding.FragmentHomeBinding
 import com.example.software_engineer.ui.*
-import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.internal.EMPTY_REQUEST
 import kotlin.concurrent.thread
 
 
@@ -71,7 +68,9 @@ class HomeFragment : Fragment() {
                 val userRespAdapter= moshi.adapter(userResp::class.java)
                 val mediaType = "application/json; charset=utf-8".toMediaType()
                 val requestBody =  userParamAdapter.toJson(userParam(name,passwd)).toRequestBody(mediaType)
-                Log.d(TAG, "sendRequestWithHttpURL: usr(name,passwd).toString"+userParamAdapter.toJson(userParam(name,passwd)))
+                Log.d(TAG, "sendRequestWithHttpURL: usr(name,passwd).toString"+userParamAdapter.toJson(
+                    userParam(name,passwd)
+                ))
                 val client=OkHttpClient()
                 val request=Request.Builder().url("$UsrURL/$type").post(requestBody).build()
                 val response=client.newCall(request).execute()
