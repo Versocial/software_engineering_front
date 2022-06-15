@@ -10,7 +10,6 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.software_engineer.*
-import com.example.software_engineer.ui.addCarResp
 import com.example.software_engineer.ui.home.runOnUiThread
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -52,7 +51,7 @@ class CarFragment : Fragment() {
         else {
             thread {
                 try {
-                    val RespAdapter = moshi.adapter(addCarResp::class.java)
+                    val respAdapter = moshi.adapter(addCarResp::class.java)
                     val client = OkHttpClient()
                     val empty: RequestBody = EMPTY_REQUEST
                     val request =
@@ -61,7 +60,7 @@ class CarFragment : Fragment() {
                     val response = client.newCall(request).execute()
                     val responseData = response.body?.string()
                     if (responseData != null) {
-                        val car = RespAdapter.fromJson(responseData)
+                        val car = respAdapter.fromJson(responseData)
 
                         if (car != null) {
                             runOnUiThread {
