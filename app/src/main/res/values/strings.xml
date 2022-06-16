@@ -16,4 +16,5 @@
     <string name="carId">车号</string>
     <string name="chargeQuantity">充电量</string>
     <string name="charge">请求充电</string>
+    <string name="queryInfo">查询状态</string>
 </resources>
