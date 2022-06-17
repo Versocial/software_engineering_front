@@ -17,4 +17,13 @@
     <string name="chargeQuantity">充电量</string>
     <string name="charge">请求充电</string>
     <string name="queryInfo">查询状态</string>
+    <string name="chargePileNumber">充电桩号</string>
+    <string name="queryPileInfo">查询充电桩状态</string>
+    <string name="openPile">启动充电桩</string>
+    <string name="queryReportInfo">查询报表状态</string>
+    <string name="is_work">是否正常工作</string>
+    <string name="total_count">累计充电次数</string>
+    <string name="total_time">充电总时长</string>
+    <string name="total_quantity">充电总电量</string>
+    <string name="head_id">当前ID</string>
 </resources>

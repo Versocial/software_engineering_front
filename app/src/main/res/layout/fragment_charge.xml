@@ -32,7 +32,7 @@
         android:textOn="@string/fastCharge"
         android:thumb="@drawable/m_switch_thumb"
         android:track="@drawable/m_switch_track"
-        app:layout_constraintBottom_toTopOf="@+id/charging_quantity"
+        app:layout_constraintBottom_toTopOf="@+id/pile_num"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="UseSwitchCompatOrMaterialXml"
@@ -45,12 +45,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:text="@string/chargeQuantity"
-        app:layout_constraintEnd_toStartOf="@id/charging_quantity"
-        app:layout_constraintBottom_toBottomOf="@id/charging_quantity"
+        app:layout_constraintEnd_toStartOf="@id/pile_num"
+        app:layout_constraintBottom_toBottomOf="@id/pile_num"
         />
 
     <EditText
-        android:id="@+id/charging_quantity"
+        android:id="@+id/pile_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="number"

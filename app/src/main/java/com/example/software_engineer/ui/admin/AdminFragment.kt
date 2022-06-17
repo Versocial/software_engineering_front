@@ -1,12 +1,34 @@
 package com.example.software_engineer.ui.admin
 
+import android.content.ContentValues
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.software_engineer.R
+import android.widget.Button
+import android.widget.TextView
+
+import retrofit2.Callback
+import androidx.lifecycle.ViewModelProvider
+import com.example.software_engineer.*
+import com.example.software_engineer.databinding.FragmentAdminBinding
+import com.example.software_engineer.databinding.FragmentHomeBinding
+import com.example.software_engineer.ui.BaseResp
 import com.example.software_engineer.ui.car.CarFragment
+import com.example.software_engineer.ui.home.HomeViewModel
+import com.example.software_engineer.ui.home.runOnUiThread
+import com.example.software_engineer.ui.home.userParam
+import com.example.software_engineer.ui.home.userResp
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody.Companion.toRequestBody
+import retrofit2.Call
+import retrofit2.Response
+import kotlin.concurrent.thread
 
 /**
  * A simple [Fragment] subclass.
@@ -14,29 +36,107 @@ import com.example.software_engineer.ui.car.CarFragment
  * create an instance of this fragment.
  */
 class AdminFragment : Fragment() {
+    private var _binding: FragmentAdminBinding? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    // This property is only valid between onCreateView and
+    // onDestroyView.
+    private val binding get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_admin, container, false)
+    ): View {
+        val homeViewModel =
+            ViewModelProvider(this).get(HomeViewModel::class.java)
+
+        _binding = FragmentAdminBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+
+        binding.openPile.setOnClickListener {
+            openPile()
+        }
+        binding.queryPileInfo.setOnClickListener {
+            queryPileInfo()
+        }
+        binding.queryReport.setOnClickListener {
+//            queryReport()
+        }
+//        val textView: TextView = binding.textHome
+//        homeViewModel.text.observe(viewLifecycleOwner) {
+//            textView.text = it
+//        }
+
+
+//        val button: Button =binding.login
+//        button.setOnClickListener{
+//            sendRequestWithHttpURL(binding.signInAccount.text.toString(),binding.signInPassWord.text.toString(),"login")
+//        }
+//        binding.register.setOnClickListener {
+//            sendRequestWithHttpURL(binding.signInAccount.text.toString(),binding.signInPassWord.text.toString(),"register"
+//
+//        binding.addCar.setOnClickListener {
+//            addCar(binding.batteryCap.text.toString())
+//        }
+        return root
+    }
+    private  fun  openPile(){
+        val pileId=binding.pileNum.toString()
+        retrofit.create(PileRequest::class.java).post(pileId).enqueue(
+            object :Callback<ClosePileResp>{
+                override fun onFailure(call: Call<ClosePileResp>, t: Throwable) {
+                    t.message?.let { it -> Log.e("charge network error:", it) };
+                }
+
+                override fun onResponse(
+                    call: Call<ClosePileResp>,
+                    response: Response<ClosePileResp>
+                ) {
+                    runOnUiThread {
+                        var str=""
+                        (response.body()as ClosePileResp).apply {
+                            if (pile_status){
+                                str="已经启动 \n $pileId"
+                            }else{
+                                str="已经关闭\n $pileId"
+                            }
+                        }
+                        binding.textInfo.text=str
+                    }
+                }
+            }
+
+        )
+    }
+    private fun queryPileInfo(){
+        retrofit.create(StatusRequest::class.java).get(
+            TheToken
+        ).enqueue(
+            object :Callback<PileResp>{
+                override fun onFailure(call: Call<PileResp>, t: Throwable) {
+                    runOnUiThread {
+                        val intent=Intent(context,PileDetailActivity::class.java)
+                        startActivity(intent)
+                    }
+                    t.message?.let { it->Log.e("queryPileInfo error",it) };
+                }
+
+                override fun onResponse(call: Call<PileResp>, response: Response<PileResp>) {
+                   runOnUiThread {
+                       val intent=Intent(context,PileDetailActivity::class.java)
+                       startActivity(intent)
+                   }
+                }
+            }
+        )
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         * @return A new instance of fragment CarFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CarFragment().apply {
-            }
+    private fun showResponse(response: BaseResp, type: String){
+        runOnUiThread{
+        }
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

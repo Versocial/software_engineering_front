@@ -34,7 +34,7 @@ class ChargeFragment : Fragment() {
     ): View? {
         val view=inflater.inflate(R.layout.fragment_charge, container, false)
         carIdInput=view.findViewById(R.id.car_id)
-        chargeQuantityInput=view.findViewById(R.id.charging_quantity)
+        chargeQuantityInput=view.findViewById(R.id.pile_num)
         chargingTypeInput=view.findViewById(R.id.fastSlow)
         textInfo=view.findViewById(R.id.textInfo)
 
