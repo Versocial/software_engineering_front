@@ -19,11 +19,12 @@ package com.example.software_engineer.ui.admin.list
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.software_engineer.ui.admin.data.CarDataSource
 import com.example.software_engineer.ui.admin.data.PileDataSource
 
-class PileListViewModel(val pileDataSource: PileDataSource) : ViewModel() {
+class CarListViewModel(val carDataSource: CarDataSource) : ViewModel() {
 
-    val flowersLiveData = pileDataSource.getFlowerList()
+    val flowersLiveData = carDataSource.getFlowerList()
 
 //    /* If the name and description are present, create new Flower and add it to the datasource */
 //    fun insertFlower(flowerName: String?, flowerDescription: String?) {
@@ -43,7 +44,7 @@ class PileListViewModel(val pileDataSource: PileDataSource) : ViewModel() {
 //}
 }
 
-class FlowersListViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
+class CarListViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(PileListViewModel::class.java)) {

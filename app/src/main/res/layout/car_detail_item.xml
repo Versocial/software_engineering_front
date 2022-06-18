@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/user_head_id"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:text="@string/user_head_id"/>
+
+    <TextView
+        android:id="@+id/user_car_id"
+        android:layout_width="48dp"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:text="@string/user_car_id"/>
+
+    <TextView
+        android:id="@+id/user_car_capacity"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:text="@string/user_car_capacity"
+        android:textAppearance="?attr/textAppearanceHeadline6"/>
+    <TextView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/user_car_request_quantity"
+        android:layout_margin="8dp"
+        android:text="@string/car_request_quantity"
+        android:textAppearance="?attr/textAppearanceHeadline6"/>
+    <TextView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/user_waiting_time"
+        android:layout_margin="8dp"
+        android:text="@string/user_waiting_time"
+        android:textAppearance="?attr/textAppearanceHeadline6"/>
+</LinearLayout>

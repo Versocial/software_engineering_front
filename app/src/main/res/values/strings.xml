@@ -26,4 +26,9 @@
     <string name="total_time">充电总时长</string>
     <string name="total_quantity">充电总电量</string>
     <string name="head_id">当前ID</string>
+    <string name="user_head_id">用户ID</string>
+    <string name="user_car_id">车ID</string>
+    <string name="user_car_capacity">电量</string>
+    <string name="car_request_quantity">请求充电的大小</string>
+    <string name="user_waiting_time">等待时间</string>
 </resources>

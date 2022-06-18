@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.software_engineer.ui.admin.Pile
 
-class DataSource(resources: Resources) {
+class PileDataSource(resources: Resources) {
     private val initialFlowerList = flowerList(resources)
 
     private fun flowerList(resources: Resources): List<Pile>{
@@ -114,11 +114,11 @@ return listOf(
 
 
     companion object {
-        private var INSTANCE: DataSource? = null
+        private var INSTANCE: PileDataSource? = null
 
-        fun getDataSource(resources: Resources): DataSource {
-            return synchronized(DataSource::class) {
-                val newInstance = INSTANCE ?: DataSource(resources)
+        fun getDataSource(resources: Resources): PileDataSource {
+            return synchronized(PileDataSource::class) {
+                val newInstance = INSTANCE ?: PileDataSource(resources)
                 INSTANCE = newInstance
                 newInstance
             }

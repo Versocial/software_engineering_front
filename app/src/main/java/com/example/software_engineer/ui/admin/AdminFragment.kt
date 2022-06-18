@@ -1,6 +1,5 @@
 package com.example.software_engineer.ui.admin
 
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,27 +7,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 
 import retrofit2.Callback
 import androidx.lifecycle.ViewModelProvider
 import com.example.software_engineer.*
 import com.example.software_engineer.databinding.FragmentAdminBinding
-import com.example.software_engineer.databinding.FragmentHomeBinding
 import com.example.software_engineer.ui.BaseResp
-import com.example.software_engineer.ui.car.CarFragment
 import com.example.software_engineer.ui.home.HomeViewModel
 import com.example.software_engineer.ui.home.runOnUiThread
-import com.example.software_engineer.ui.home.userParam
-import com.example.software_engineer.ui.home.userResp
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call
 import retrofit2.Response
-import kotlin.concurrent.thread
 
 /**
  * A simple [Fragment] subclass.
@@ -115,7 +103,7 @@ class AdminFragment : Fragment() {
             object :Callback<PileResp>{
                 override fun onFailure(call: Call<PileResp>, t: Throwable) {
                     runOnUiThread {
-                        val intent=Intent(context,PileDetailActivity::class.java)
+                        val intent=Intent(context,CarDetailActivity::class.java)
                         startActivity(intent)
                     }
                     t.message?.let { it->Log.e("queryPileInfo error",it) };
@@ -123,7 +111,7 @@ class AdminFragment : Fragment() {
 
                 override fun onResponse(call: Call<PileResp>, response: Response<PileResp>) {
                    runOnUiThread {
-                       val intent=Intent(context,PileDetailActivity::class.java)
+                       val intent=Intent(context,CarDetailActivity::class.java)
                        startActivity(intent)
                    }
                 }
