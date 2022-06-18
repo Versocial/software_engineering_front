@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
-
+import java.io.Serializable
 public interface ReportRequest {
     @GET("admin/report")
     fun get(
@@ -18,7 +18,7 @@ public interface ReportRequest {
 data class ReportResp(
     @Json(name = "status_msg") val msg: String,
     @Json(name = "status_code") val status_code: Int,
-    @Json(name = "pile") val reports: List<Report>
+    @Json(name = "reports") val reports: List<Report>
 )
 
 @JsonClass(generateAdapter = true)
@@ -31,4 +31,4 @@ data class Report(
     @Json(name = "pile_charging_total_fee") val pile_charging_total_fee:Double,
     @Json(name = "pile_service_total_fee") val pile_service_total_fee:Double,
     @Json(name = "pile_total_fee") val pile_total_fee:Double,
-    )
+    ) : Serializable

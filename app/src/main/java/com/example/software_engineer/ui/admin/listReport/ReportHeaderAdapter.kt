@@ -16,14 +16,14 @@ class ReportHeaderAdapter: RecyclerView.Adapter<ReportHeaderAdapter.HeaderViewHo
     /* ViewHolder for displaying header. */
     class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view){
 
-        private val ReportTime:TextView=itemView.findViewById(R.id.report_time)
-        private val PileID:TextView=itemView.findViewById(R.id.report_pile_id)
-        private val TotalCount:TextView=itemView.findViewById(R.id.report_total_count)
-        private val TotalTime:TextView=itemView.findViewById(R.id.report_total_time)
-        private val TotalQuantity:TextView=itemView.findViewById(R.id.report_total_quantity)
-        private val TotalFee:TextView=itemView.findViewById(R.id.report_total_fee)
-        private val TotalServiceFee:TextView=itemView.findViewById(R.id.report_service_total_fee)
-        private val PileTotalFee:TextView=itemView.findViewById(R.id.pile_total_fee)
+        private val ReportTime:TextView=itemView.findViewById(R.id.report_head_time)
+        private val PileID:TextView=itemView.findViewById(R.id.report_head_pile_id)
+        private val TotalCount:TextView=itemView.findViewById(R.id.report_head_total_count)
+        private val TotalTime:TextView=itemView.findViewById(R.id.report_head_total_time)
+        private val TotalQuantity:TextView=itemView.findViewById(R.id.report_head_total_quantity)
+        private val TotalFee:TextView=itemView.findViewById(R.id.report_head_total_fee)
+        private val TotalServiceFee:TextView=itemView.findViewById(R.id.report_head_service_total_fee)
+        private val PileTotalFee:TextView=itemView.findViewById(R.id.pile_head_total_fee)
         fun bind(flowerCount: Int) {
 
         }
@@ -32,7 +32,7 @@ class ReportHeaderAdapter: RecyclerView.Adapter<ReportHeaderAdapter.HeaderViewHo
     /* Inflates view and returns HeaderViewHolder. */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.car_detail_head, parent, false)
+            .inflate(R.layout.report_detail_head, parent, false)
         return HeaderViewHolder(view)
     }
 

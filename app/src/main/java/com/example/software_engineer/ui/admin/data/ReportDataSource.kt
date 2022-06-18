@@ -13,15 +13,25 @@ class ReportDataSource(resources: Resources) {
         return listOf(
             Report(
                 time = "dsa",
-                pile_charging_total_time = "dsa",
+                pile_charging_total_time = "dddddd",
                 pile_id = 1,
                 pile_charging_total_count = 1,
                 pile_charging_total_fee = 2.1,
                 pile_charging_total_quantity = 2.3,
                 pile_service_total_fee = 2.3,
                 pile_total_fee = 2.34
-            )
+            ),
 
+                    Report(
+                    time = "dddd",
+            pile_charging_total_time = "aaa",
+            pile_id = 1,
+            pile_charging_total_count = 1,
+            pile_charging_total_fee = 2.1,
+            pile_charging_total_quantity = 2.3,
+            pile_service_total_fee = 2.3,
+            pile_total_fee = 2.34
+        )
         )
     }
 

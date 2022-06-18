@@ -39,4 +39,5 @@
     <string name="report_total_quantity">累计充电量</string>
     <string name="report_service_total_fee">累计服务费用</string>
     <string name="pile_total_fee">累计总费用</string>
+    <string name="queryCarInfo">等待服务的车辆的信息</string>
 </resources>

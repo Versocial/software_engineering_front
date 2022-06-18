@@ -11,7 +11,7 @@ public interface CarRequest {
     @GET("admin/pile/cars")
     fun get(
         @Query("token") token: String,
-        @Query("pile_id") pile_id: Int,
+        @Query("pile_id") pile_id: String,
     ): Call<PileCarResp>
 }
 

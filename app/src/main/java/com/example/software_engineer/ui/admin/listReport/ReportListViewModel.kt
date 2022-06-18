@@ -17,14 +17,15 @@
 package com.example.software_engineer.ui.admin.list
 
 import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.software_engineer.ui.admin.Report
 import com.example.software_engineer.ui.admin.data.CarDataSource
 import com.example.software_engineer.ui.admin.data.PileDataSource
 import com.example.software_engineer.ui.admin.data.ReportDataSource
 
 class ReportListViewModel(val reportDataSource: ReportDataSource) : ViewModel() {
-
     val flowersLiveData = reportDataSource.getFlowerList()
 
 //    /* If the name and description are present, create new Flower and add it to the datasource */

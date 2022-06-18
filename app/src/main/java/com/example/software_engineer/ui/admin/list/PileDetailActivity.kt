@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.software_engineer.R
-import com.example.software_engineer.ui.admin.list.HeaderAdapter
+import com.example.software_engineer.ui.admin.list.PileHeaderAdapter
 import com.example.software_engineer.ui.admin.list.PileDetailAdapter
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +19,7 @@ class PileDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pile_detail)
-        val headerAdapter=HeaderAdapter()
+        val headerAdapter=PileHeaderAdapter()
         val detailAdapter=PileDetailAdapter()
         val concatAdapter=ConcatAdapter(headerAdapter,detailAdapter)
 

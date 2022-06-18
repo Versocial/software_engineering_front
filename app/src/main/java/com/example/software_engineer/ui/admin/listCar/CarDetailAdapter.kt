@@ -36,7 +36,7 @@ class CarDetailAdapter :
     /* Creates and inflates view and return FlowerViewHolder. */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailAdapter {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.pile_detail_item, parent, false)
+            .inflate(R.layout.car_detail_item, parent, false)
         return DetailAdapter(view)
     }
 

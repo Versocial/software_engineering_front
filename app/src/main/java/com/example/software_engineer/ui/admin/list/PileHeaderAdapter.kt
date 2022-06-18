@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.software_engineer.R
 
 
-class HeaderAdapter: RecyclerView.Adapter<HeaderAdapter.HeaderViewHolder>() {
+class PileHeaderAdapter: RecyclerView.Adapter<PileHeaderAdapter.HeaderViewHolder>() {
     private var pileCount: Int = 0
 
     /* ViewHolder for displaying header. */
