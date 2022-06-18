@@ -23,6 +23,9 @@
             android:name=".ui.admin.PileDetailActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.admin.ReportDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name">

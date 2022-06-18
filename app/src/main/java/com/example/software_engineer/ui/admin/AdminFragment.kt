@@ -48,7 +48,7 @@ class AdminFragment : Fragment() {
             queryPileInfo()
         }
         binding.queryReport.setOnClickListener {
-//            queryReport()
+            queryReport()
         }
 //        val textView: TextView = binding.textHome
 //        homeViewModel.text.observe(viewLifecycleOwner) {
@@ -103,7 +103,7 @@ class AdminFragment : Fragment() {
             object :Callback<PileResp>{
                 override fun onFailure(call: Call<PileResp>, t: Throwable) {
                     runOnUiThread {
-                        val intent=Intent(context,CarDetailActivity::class.java)
+                        val intent=Intent(context,PileDetailActivity::class.java)
                         startActivity(intent)
                     }
                     t.message?.let { it->Log.e("queryPileInfo error",it) };
@@ -111,7 +111,7 @@ class AdminFragment : Fragment() {
 
                 override fun onResponse(call: Call<PileResp>, response: Response<PileResp>) {
                    runOnUiThread {
-                       val intent=Intent(context,CarDetailActivity::class.java)
+                       val intent=Intent(context,PileDetailActivity::class.java)
                        startActivity(intent)
                    }
                 }
@@ -119,6 +119,28 @@ class AdminFragment : Fragment() {
         )
     }
 
+    private fun queryReport(){
+        retrofit.create(ReportRequest::class.java).get(
+            TheToken
+        ).enqueue(
+            object :Callback<ReportResp>{
+                override fun onFailure(call: Call<ReportResp>, t: Throwable) {
+                    runOnUiThread {
+                        val intent=Intent(context,ReportDetailActivity::class.java)
+                        startActivity(intent)
+                    }
+                    t.message?.let { it->Log.e("queryPileInfo error",it) };
+                }
+
+                override fun onResponse(call: Call<ReportResp>, response: Response<ReportResp>) {
+                    runOnUiThread {
+                        val intent=Intent(context,ReportDetailActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+            }
+        )
+    }
     private fun showResponse(response: BaseResp, type: String){
         runOnUiThread{
         }

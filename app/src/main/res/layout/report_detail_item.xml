@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/report_time"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:text="@string/report_time"/>
+
+    <TextView
+        android:id="@+id/report_pile_id"
+        android:layout_width="48dp"
+        android:textAppearance="?attr/textAppearanceHeadline6"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:text="@string/report_pile_id"/>
+
+    <TextView
+        android:id="@+id/report_total_count"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="8dp"
+        android:text="@string/report_total_count"
+        android:textAppearance="?attr/textAppearanceHeadline6"/>
+    <TextView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/report_total_time"
+        android:layout_margin="8dp"
+        android:text="@string/report_total_time"
+        android:textAppearance="?attr/textAppearanceHeadline6"/>
+    <TextView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/report_total_quantity"
+        android:layout_margin="8dp"
+        android:text="@string/report_total_quantity"
+        android:textAppearance="?attr/textAppearanceHeadline6"/>
+    <TextView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/report_total_fee"
+        android:layout_margin="8dp"
+        android:text="@string/report_total_fee"
+        android:textAppearance="?attr/textAppearanceHeadline6"/>
+    <TextView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/report_service_total_fee"
+        android:layout_margin="8dp"
+        android:text="@string/report_service_total_fee"
+        android:textAppearance="?attr/textAppearanceHeadline6"/>
+    <TextView
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/pile_total_fee"
+        android:layout_margin="8dp"
+        android:text="@string/pile_total_fee"
+        android:textAppearance="?attr/textAppearanceHeadline6"/>
+
+</LinearLayout>

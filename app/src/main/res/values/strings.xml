@@ -31,4 +31,12 @@
     <string name="user_car_capacity">电量</string>
     <string name="car_request_quantity">请求充电的大小</string>
     <string name="user_waiting_time">等待时间</string>
+    <string name="report_time">时间</string>
+    <string name="report_pile_id">充电桩ID</string>
+    <string name="report_total_count">充电次数</string>
+    <string name="report_total_time">累计充电时长</string>
+    <string name="report_total_fee">累计充电费用</string>
+    <string name="report_total_quantity">累计充电量</string>
+    <string name="report_service_total_fee">累计服务费用</string>
+    <string name="pile_total_fee">累计总费用</string>
 </resources>

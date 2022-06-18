@@ -21,10 +21,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.software_engineer.ui.admin.data.CarDataSource
 import com.example.software_engineer.ui.admin.data.PileDataSource
+import com.example.software_engineer.ui.admin.data.ReportDataSource
 
-class CarListViewModel(val carDataSource: CarDataSource) : ViewModel() {
+class ReportListViewModel(val reportDataSource: ReportDataSource) : ViewModel() {
 
-    val flowersLiveData = carDataSource.getFlowerList()
+    val flowersLiveData = reportDataSource.getFlowerList()
 
 //    /* If the name and description are present, create new Flower and add it to the datasource */
 //    fun insertFlower(flowerName: String?, flowerDescription: String?) {
@@ -44,13 +45,13 @@ class CarListViewModel(val carDataSource: CarDataSource) : ViewModel() {
 //}
 }
 
-class CarListViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
+class ReportListViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(CarListViewModel::class.java)) {
+        if (modelClass.isAssignableFrom(ReportListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return CarListViewModel(
-                carDataSource = CarDataSource.getDataSource(context.resources)
+            return ReportListViewModel(
+                        reportDataSource = ReportDataSource.getDataSource(context.resources)
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
