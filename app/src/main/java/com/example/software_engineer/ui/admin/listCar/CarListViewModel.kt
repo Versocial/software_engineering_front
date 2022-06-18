@@ -20,15 +20,13 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.software_engineer.ui.admin.CarInfo
-import com.example.software_engineer.ui.admin.Report
 import com.example.software_engineer.ui.admin.data.CarDataSource
-import com.example.software_engineer.ui.admin.data.PileDataSource
 
 class CarListViewModel(val carDataSource: CarDataSource) : ViewModel() {
 
     val flowersLiveData = carDataSource.getFlowerList()
 
-//    /* If the name and description are present, create new Flower and add it to the datasource */
+    //    /* If the name and description are present, create new Flower and add it to the datasource */
 //    fun insertFlower(flowerName: String?, flowerDescription: String?) {
 //        if (flowerName == null || flowerDescription == null) {
 //            return
@@ -44,12 +42,12 @@ class CarListViewModel(val carDataSource: CarDataSource) : ViewModel() {
 //        dataSource.addFlower(newFlower)
 //    }
 //}
-fun insertFlowers(report: List<CarInfo>) {
+    fun insertFlowers(report: List<CarInfo>) {
 
-    val newFlower = report
+        val newFlower = report
 
-    carDataSource.addFlowers(newFlower)
-}
+        carDataSource.addFlowers(newFlower)
+    }
 }
 
 class CarListViewModelFactory(private val context: Context) : ViewModelProvider.Factory {

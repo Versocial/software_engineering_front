@@ -19,7 +19,6 @@ package com.example.software_engineer.ui.admin.list
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.software_engineer.ui.admin.CarInfo
 import com.example.software_engineer.ui.admin.Pile
 import com.example.software_engineer.ui.admin.data.PileDataSource
 
@@ -27,7 +26,7 @@ class PileListViewModel(val pileDataSource: PileDataSource) : ViewModel() {
 
     val flowersLiveData = pileDataSource.getFlowerList()
 
-//    /* If the name and description are present, create new Flower and add it to the datasource */
+    //    /* If the name and description are present, create new Flower and add it to the datasource */
 //    fun insertFlower(flowerName: String?, flowerDescription: String?) {
 //        if (flowerName == null || flowerDescription == null) {
 //            return
@@ -43,12 +42,12 @@ class PileListViewModel(val pileDataSource: PileDataSource) : ViewModel() {
 //        dataSource.addFlower(newFlower)
 //    }
 //}
-fun insertFlowers(report: List<Pile>) {
+    fun insertFlowers(report: List<Pile>) {
 
-    val newFlower = report
+        val newFlower = report
 
-    pileDataSource.addFlowers(newFlower)
-}
+        pileDataSource.addFlowers(newFlower)
+    }
 }
 
 class FlowersListViewModelFactory(private val context: Context) : ViewModelProvider.Factory {

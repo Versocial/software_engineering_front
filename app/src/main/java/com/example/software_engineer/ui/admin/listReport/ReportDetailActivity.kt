@@ -1,32 +1,34 @@
 package com.example.software_engineer.ui.admin
 
-import android.content.ContentValues.TAG
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
-import com.example.software_engineer.R
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.software_engineer.ui.admin.list.*
+import com.example.software_engineer.R
+import com.example.software_engineer.ui.admin.list.ReportDetailAdapter
+import com.example.software_engineer.ui.admin.list.ReportHeaderAdapter
+import com.example.software_engineer.ui.admin.list.ReportListViewModel
+import com.example.software_engineer.ui.admin.list.ReportListViewModelFactory
 
 class ReportDetailActivity : AppCompatActivity() {
 
-    lateinit var extraData:List<Report>
+    lateinit var extraData: List<Report>
 
     private val flowersListViewModel by viewModels<ReportListViewModel> {
         ReportListViewModelFactory(this)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_report_detail)
-        val headerAdapter=ReportHeaderAdapter()
-        val detailAdapter=ReportDetailAdapter()
-        val concatAdapter=ConcatAdapter(headerAdapter,detailAdapter)
+        val headerAdapter = ReportHeaderAdapter()
+        val detailAdapter = ReportDetailAdapter()
+        val concatAdapter = ConcatAdapter(headerAdapter, detailAdapter)
 
-        val recyclerView: RecyclerView=findViewById(R.id.recycler_report_view)
-        recyclerView.adapter=concatAdapter
-        extraData= intent.getBundleExtra("extra_data")?.get("reports") as List<Report>
+        val recyclerView: RecyclerView = findViewById(R.id.recycler_report_view)
+        recyclerView.adapter = concatAdapter
+        extraData = intent.getBundleExtra("extra_data")?.get("reports") as List<Report>
         flowersListViewModel.insertFlowers(extraData)
 //        val reports= extraData?.get("reports")
 //        extraData=listOf(

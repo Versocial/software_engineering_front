@@ -55,31 +55,16 @@ class AdminFragment : Fragment() {
         binding.queryReport.setOnClickListener {
             queryReport()
         }
-//        val textView: TextView = binding.textHome
-//        homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
-//        }
-
-
-//        val button: Button =binding.login
-//        button.setOnClickListener{
-//            sendRequestWithHttpURL(binding.signInAccount.text.toString(),binding.signInPassWord.text.toString(),"login")
-//        }
-//        binding.register.setOnClickListener {
-//            sendRequestWithHttpURL(binding.signInAccount.text.toString(),binding.signInPassWord.text.toString(),"register"
-//
-//        binding.addCar.setOnClickListener {
-//            addCar(binding.batteryCap.text.toString())
-//        }
         return root
     }
-    private  fun  openPile(){
-        val pileId=binding.pileNum.toString()
+
+    private fun openPile() {
+        val pileId = binding.pileNum.toString()
         retrofit.create(PileRequest::class.java).post(pileId).enqueue(
-            object :Callback<ClosePileResp>{
+            object : Callback<ClosePileResp> {
                 override fun onFailure(call: Call<ClosePileResp>, t: Throwable) {
-                    Toast.makeText(context,"some thing wrong",Toast.LENGTH_SHORT).show()
-                    t.message?.let { it -> Log.e("charge network error:", it) };
+                    Toast.makeText(context, "some thing wrong", Toast.LENGTH_SHORT).show()
+                    t.message?.let { it -> Log.e("charge network error:", it) }
                 }
 
                 override fun onResponse(
@@ -87,67 +72,68 @@ class AdminFragment : Fragment() {
                     response: Response<ClosePileResp>
                 ) {
                     runOnUiThread {
-                        var str=""
-                        (response.body()as ClosePileResp).apply {
-                            if (pile_status){
-                                str="已经启动 \n $pileId"
-                            }else{
-                                str="已经关闭\n $pileId"
+                        var str = ""
+                        (response.body() as ClosePileResp).apply {
+                            if (pile_status) {
+                                str = "已经启动 \n $pileId"
+                            } else {
+                                str = "已经关闭\n $pileId"
                             }
                         }
-                        binding.textInfo.text=str
+                        binding.textInfo.text = str
                     }
                 }
             }
 
         )
     }
-    private fun queryPileInfo(){
+
+    private fun queryPileInfo() {
         retrofit.create(StatusRequest::class.java).get(
             TheToken
         ).enqueue(
-            object :Callback<PileResp>{
+            object : Callback<PileResp> {
                 override fun onFailure(call: Call<PileResp>, t: Throwable) {
                     runOnUiThread {
-                        Toast.makeText(context,"some thing wrong",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "some thing wrong", Toast.LENGTH_SHORT).show()
                     }
-                    t.message?.let { it->Log.e("queryPileInfo error",it) };
+                    t.message?.let { it -> Log.e("queryPileInfo error", it) }
                 }
 
                 override fun onResponse(call: Call<PileResp>, response: Response<PileResp>) {
-                   runOnUiThread {
-                       val intent=Intent(context,PileDetailActivity::class.java)
-                       startActivity(intent)
-                   }
+                    runOnUiThread {
+                        val intent = Intent(context, PileDetailActivity::class.java)
+                        startActivity(intent)
+                    }
                 }
             }
         )
     }
 
-    private fun queryReport(){
+    private fun queryReport() {
         retrofit.create(ReportRequest::class.java).get(
             TheToken
         ).enqueue(
-            object :Callback<ReportResp>{
+            object : Callback<ReportResp> {
                 override fun onFailure(call: Call<ReportResp>, t: Throwable) {
                     runOnUiThread {
-                        Toast.makeText(context,"some thing wrong",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "some thing wrong", Toast.LENGTH_SHORT).show()
                     }
-                    t.message?.let { it->Log.e("queryPileInfo error",it) };
+                    t.message?.let { it -> Log.e("queryPileInfo error", it) }
                 }
 
                 override fun onResponse(call: Call<ReportResp>, response: Response<ReportResp>) {
                     runOnUiThread {
-                        val intent=Intent(context,ReportDetailActivity::class.java)
-                        val bundle=Bundle()
+                        val intent = Intent(context, ReportDetailActivity::class.java)
+                        val bundle = Bundle()
 //                        (response.body() as ReportResp).apply {
 //                            bundle.putSerializable("reports", response.body()!!.reports as Serializable)
 //                        }
-                        var t =response.body() as ReportResp
+                        var t = response.body() as ReportResp
                         t.let {
 
-                            bundle.putSerializable("reports",t.reports as Serializable)
-                            intent.putExtra("extra_data",bundle)
+                            bundle.putSerializable("reports", t.reports as Serializable)
+                            intent.putExtra("extra_data", bundle)
                             startActivity(intent)
                         }
                     }
@@ -155,20 +141,21 @@ class AdminFragment : Fragment() {
             }
         )
     }
-    private fun queryCar(){
-        val pileId=binding.pileNum.toString()
+
+    private fun queryCar() {
+        val pileId = binding.pileNum.toString()
         with(retrofit) {
             create(CarRequest::class.java).get(
                 TheToken,
-           pile_id = pileId
+                pile_id = pileId
             ).enqueue(
-                object :Callback<PileCarResp>{
+                object : Callback<PileCarResp> {
                     override fun onFailure(call: Call<PileCarResp>, t: Throwable) {
 
                         runOnUiThread {
-                            Toast.makeText(context,"some thing wrong",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context, "some thing wrong", Toast.LENGTH_SHORT).show()
                         }
-                        t.message?.let { it->Log.e("queryPileInfo error",it) };
+                        t.message?.let { it -> Log.e("queryPileInfo error", it) }
                     }
 
                     override fun onResponse(
@@ -178,33 +165,36 @@ class AdminFragment : Fragment() {
                         runOnUiThread {
 
 
-                            val intent=Intent(context,CarDetailActivity::class.java)
-                            val bundle=Bundle()
+                            val intent = Intent(context, CarDetailActivity::class.java)
+                            val bundle = Bundle()
 //                        (response.body() as ReportResp).apply {
 //                            bundle.putSerializable("reports", response.body()!!.reports as Serializable)
 //                        }
-                            response.body()?: let{
-                                Toast.makeText(context, "empty pile",Toast.LENGTH_SHORT).show()
-                                return@runOnUiThread}
-                                var t =response.body() as PileCarResp
-                                t.let {
-
-                                    bundle.putSerializable("cars",t.cars as Serializable)
-                                    intent.putExtra("extra_data",bundle)
-                                    startActivity(intent)
-                                }
+                            response.body() ?: let {
+                                Toast.makeText(context, "empty pile", Toast.LENGTH_SHORT).show()
+                                return@runOnUiThread
                             }
+                            var t = response.body() as PileCarResp
+                            t.let {
 
+                                bundle.putSerializable("cars", t.cars as Serializable)
+                                intent.putExtra("extra_data", bundle)
+                                startActivity(intent)
+                            }
                         }
+
+                    }
 
                 }
             )
         }
     }
-    private fun showResponse(response: BaseResp, type: String){
-        runOnUiThread{
+
+    private fun showResponse(response: BaseResp, type: String) {
+        runOnUiThread {
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

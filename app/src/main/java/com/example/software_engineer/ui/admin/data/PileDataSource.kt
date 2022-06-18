@@ -3,78 +3,77 @@ package com.example.software_engineer.ui.admin.data
 import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.software_engineer.ui.admin.CarInfo
 import com.example.software_engineer.ui.admin.Pile
 
 class PileDataSource(resources: Resources) {
     private val initialFlowerList = flowerList(resources)
 
-    private fun flowerList(resources: Resources): List<Pile>{
-return listOf(
-    Pile(
-        is_work = true,
-        total_count = 2,
-        total_time = "dsadas",
-        total_quantity = 1.24234,
-        id = 2
-    ),
-    Pile(
-        is_work = true,
-        total_count = 2,
-        total_time = "dsadas",
-        total_quantity = 1.24234,
-        id = 2
-    ),
-    Pile(
-        is_work = true,
-        total_count = 2,
-        total_time = "dsadas",
-        total_quantity = 1.24234,
-        id = 2
-    ),
-    Pile(
-        is_work = true,
-        total_count = 2,
-        total_time = "dsadas",
-        total_quantity = 1.24234,
-        id = 2
-    ),
-    Pile(
-        is_work = true,
-        total_count = 2,
-        total_time = "dsadas",
-        total_quantity = 1.24234,
-        id = 2
-    ),
-    Pile(
-        is_work = true,
-        total_count = 2,
-        total_time = "dsadas",
-        total_quantity = 1.24234,
-        id = 2
-    ),
-    Pile(
-        is_work = true,
-        total_count = 2,
-        total_time = "dsadas",
-        total_quantity = 1.24234,
-        id = 2
-    ),
-    Pile(
-        is_work = true,
-        total_count = 2,
-        total_time = "dsadas",
-        total_quantity = 1.24234,
-        id = 2
-    ),
-    Pile(
-        is_work = true,
-        total_count = 2,
-        total_time = "dsadas",
-        total_quantity = 1.24234,
-        id = 2
-    ),
-)
+    private fun flowerList(resources: Resources): List<Pile> {
+        return listOf(
+            Pile(
+                is_work = true,
+                total_count = 2,
+                total_time = "dsadas",
+                total_quantity = 1.24234,
+                id = 2
+            ),
+            Pile(
+                is_work = true,
+                total_count = 2,
+                total_time = "dsadas",
+                total_quantity = 1.24234,
+                id = 2
+            ),
+            Pile(
+                is_work = true,
+                total_count = 2,
+                total_time = "dsadas",
+                total_quantity = 1.24234,
+                id = 2
+            ),
+            Pile(
+                is_work = true,
+                total_count = 2,
+                total_time = "dsadas",
+                total_quantity = 1.24234,
+                id = 2
+            ),
+            Pile(
+                is_work = true,
+                total_count = 2,
+                total_time = "dsadas",
+                total_quantity = 1.24234,
+                id = 2
+            ),
+            Pile(
+                is_work = true,
+                total_count = 2,
+                total_time = "dsadas",
+                total_quantity = 1.24234,
+                id = 2
+            ),
+            Pile(
+                is_work = true,
+                total_count = 2,
+                total_time = "dsadas",
+                total_quantity = 1.24234,
+                id = 2
+            ),
+            Pile(
+                is_work = true,
+                total_count = 2,
+                total_time = "dsadas",
+                total_quantity = 1.24234,
+                id = 2
+            ),
+            Pile(
+                is_work = true,
+                total_count = 2,
+                total_time = "dsadas",
+                total_quantity = 1.24234,
+                id = 2
+            ),
+        )
     }
 
     private val flowersLiveData = MutableLiveData(initialFlowerList)
@@ -89,6 +88,7 @@ return listOf(
             flowersLiveData.postValue(updatedList)
         }
     }
+
     /* Adds flower to liveData and posts value. */
     fun addFlower(flower: Pile) {
         val currentList = flowersLiveData.value
@@ -113,8 +113,8 @@ return listOf(
 
     /* Returns flower given an ID. */
     fun getFlowerForId(id: Int): Pile? {
-        flowersLiveData.value?.let { piles->
-            return piles.firstOrNull{ it.id== id}
+        flowersLiveData.value?.let { piles ->
+            return piles.firstOrNull { it.id == id }
         }
         return null
     }

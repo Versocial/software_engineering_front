@@ -1,7 +1,6 @@
 package com.example.software_engineer.ui.car
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.software_engineer.*
 import com.example.software_engineer.ui.home.runOnUiThread
 import okhttp3.OkHttpClient
@@ -24,31 +24,30 @@ import kotlin.concurrent.thread
  */
 class CarFragment : Fragment() {
 
-    lateinit var  carBatteryCP :EditText
-    lateinit var  button:Button
-    lateinit var  answer:TextView
+    lateinit var carBatteryCP: EditText
+    lateinit var button: Button
+    lateinit var answer: TextView
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view =inflater.inflate(R.layout.fragment_car, container, false)
-        carBatteryCP=view.findViewById(R.id.batteryCap)
-        answer=view.findViewById(R.id.carAddAnswer)
-        button=view.findViewById(R.id.addCar)
+        val view = inflater.inflate(R.layout.fragment_car, container, false)
+        carBatteryCP = view.findViewById(R.id.batteryCap)
+        answer = view.findViewById(R.id.carAddAnswer)
+        button = view.findViewById(R.id.addCar)
         button.setOnClickListener { addCar(carBatteryCP.text.toString()) }
         return view
     }
 
 
-    private fun addCar(cap:String) {
-        if(!isLogined){
+    private fun addCar(cap: String) {
+        if (!isLogined) {
             runOnUiThread {
-                Toast.makeText(context,"请先登录！",Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "请先登录！", Toast.LENGTH_SHORT).show()
             }
-        }
-        else {
+        } else {
             thread {
                 try {
                     val respAdapter = moshi.adapter(addCarResp::class.java)

@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 
-public interface CarRequest {
+interface CarRequest {
     @GET("admin/pile/cars")
     fun get(
         @Query("token") token: String,

@@ -4,26 +4,25 @@ import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.software_engineer.ui.admin.CarInfo
-import com.example.software_engineer.ui.admin.Report
 
 class CarDataSource(resources: Resources) {
     private val initialFlowerList = flowerList(resources)
 
-    private fun flowerList(resources: Resources): List<CarInfo>{
-return listOf(
-        CarInfo(
-            user_id = 1,
-            car_id = 2,
-            car_capacity = 212.0,
-            requested_quantity = 213.0,
-            waiting_time = "dsadsa"
+    private fun flowerList(resources: Resources): List<CarInfo> {
+        return listOf(
+            CarInfo(
+                user_id = 1,
+                car_id = 2,
+                car_capacity = 212.0,
+                requested_quantity = 213.0,
+                waiting_time = "dsadsa"
+            )
         )
-)
     }
 
     private val flowersLiveData = MutableLiveData(initialFlowerList)
 
-    fun addFlowers(flower: List<CarInfo> ) {
+    fun addFlowers(flower: List<CarInfo>) {
         val currentList = flowersLiveData.value
         if (currentList == null) {
             flowersLiveData.postValue(flower)
@@ -48,8 +47,8 @@ return listOf(
 
     /* Returns flower given an ID. */
     fun getFlowerForId(id: Int): CarInfo? {
-        flowersLiveData.value?.let { piles->
-            return piles.firstOrNull{ it.car_id== id}
+        flowersLiveData.value?.let { piles ->
+            return piles.firstOrNull { it.car_id == id }
         }
         return null
     }

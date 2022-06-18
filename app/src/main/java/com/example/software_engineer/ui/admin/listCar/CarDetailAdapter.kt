@@ -54,6 +54,6 @@ object CarDiffCallback : DiffUtil.ItemCallback<CarInfo>() {
     }
 
     override fun areContentsTheSame(oldItem: CarInfo, newItem: CarInfo): Boolean {
-        return oldItem.car_id== newItem.car_id
+        return oldItem.car_id == newItem.car_id
     }
 }

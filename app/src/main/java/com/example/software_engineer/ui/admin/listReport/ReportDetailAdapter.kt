@@ -26,7 +26,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.software_engineer.R
 import com.example.software_engineer.ui.admin.Report
 
-class ReportDetailAdapter() :
+class ReportDetailAdapter :
     ListAdapter<Report, ReportDetailAdapter.DetailAdapter>(ReportDiffCallback) {
 
 

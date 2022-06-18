@@ -1,5 +1,3 @@
-
-
 package com.example.software_engineer.ui.admin.list
 
 import android.view.LayoutInflater
@@ -10,16 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.software_engineer.R
 
 
-class CarHeaderAdapter: RecyclerView.Adapter<CarHeaderAdapter.HeaderViewHolder>() {
+class CarHeaderAdapter : RecyclerView.Adapter<CarHeaderAdapter.HeaderViewHolder>() {
     private var pileCount: Int = 0
 
     /* ViewHolder for displaying header. */
-    class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        private  val UserTextView:TextView=itemView.findViewById(R.id.user_head_id)
-        private  val UserCarId:TextView=itemView.findViewById(R.id.user_car_id)
-        private  val UserCarCap:TextView=itemView.findViewById(R.id.user_car_capacity)
-        private  val UserCarRequset:TextView=itemView.findViewById(R.id.user_car_request_quantity)
-        private  val UserWaitingTime   :TextView=itemView.findViewById(R.id.user_waiting_time)
+    class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val UserTextView: TextView = itemView.findViewById(R.id.user_head_id)
+        private val UserCarId: TextView = itemView.findViewById(R.id.user_car_id)
+        private val UserCarCap: TextView = itemView.findViewById(R.id.user_car_capacity)
+        private val UserCarRequset: TextView = itemView.findViewById(R.id.user_car_request_quantity)
+        private val UserWaitingTime: TextView = itemView.findViewById(R.id.user_waiting_time)
         fun bind(flowerCount: Int) {
 
         }

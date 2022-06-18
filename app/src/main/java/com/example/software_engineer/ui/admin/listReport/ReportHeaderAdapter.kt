@@ -1,5 +1,3 @@
-
-
 package com.example.software_engineer.ui.admin.list
 
 import android.view.LayoutInflater
@@ -10,20 +8,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.software_engineer.R
 
 
-class ReportHeaderAdapter: RecyclerView.Adapter<ReportHeaderAdapter.HeaderViewHolder>() {
+class ReportHeaderAdapter : RecyclerView.Adapter<ReportHeaderAdapter.HeaderViewHolder>() {
     private var pileCount: Int = 0
 
     /* ViewHolder for displaying header. */
-    class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private val ReportTime:TextView=itemView.findViewById(R.id.report_head_time)
-        private val PileID:TextView=itemView.findViewById(R.id.report_head_pile_id)
-        private val TotalCount:TextView=itemView.findViewById(R.id.report_head_total_count)
-        private val TotalTime:TextView=itemView.findViewById(R.id.report_head_total_time)
-        private val TotalQuantity:TextView=itemView.findViewById(R.id.report_head_total_quantity)
-        private val TotalFee:TextView=itemView.findViewById(R.id.report_head_total_fee)
-        private val TotalServiceFee:TextView=itemView.findViewById(R.id.report_head_service_total_fee)
-        private val PileTotalFee:TextView=itemView.findViewById(R.id.pile_head_total_fee)
+        private val ReportTime: TextView = itemView.findViewById(R.id.report_head_time)
+        private val PileID: TextView = itemView.findViewById(R.id.report_head_pile_id)
+        private val TotalCount: TextView = itemView.findViewById(R.id.report_head_total_count)
+        private val TotalTime: TextView = itemView.findViewById(R.id.report_head_total_time)
+        private val TotalQuantity: TextView = itemView.findViewById(R.id.report_head_total_quantity)
+        private val TotalFee: TextView = itemView.findViewById(R.id.report_head_total_fee)
+        private val TotalServiceFee: TextView =
+            itemView.findViewById(R.id.report_head_service_total_fee)
+        private val PileTotalFee: TextView = itemView.findViewById(R.id.pile_head_total_fee)
         fun bind(flowerCount: Int) {
 
         }

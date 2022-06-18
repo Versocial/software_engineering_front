@@ -9,7 +9,7 @@ import com.example.software_engineer.ui.admin.Report
 class ReportDataSource(resources: Resources) {
     private val initialFlowerList = flowerList(resources)
 
-    private fun flowerList(resources: Resources): List<Report>{
+    private fun flowerList(resources: Resources): List<Report> {
         return listOf(
             Report(
                 time = "dsa",
@@ -22,23 +22,23 @@ class ReportDataSource(resources: Resources) {
                 pile_total_fee = 2.34
             ),
 
-                    Report(
-                    time = "dddd",
-            pile_charging_total_time = "aaa",
-            pile_id = 1,
-            pile_charging_total_count = 1,
-            pile_charging_total_fee = 2.1,
-            pile_charging_total_quantity = 2.3,
-            pile_service_total_fee = 2.3,
-            pile_total_fee = 2.34
-        )
+            Report(
+                time = "dddd",
+                pile_charging_total_time = "aaa",
+                pile_id = 1,
+                pile_charging_total_count = 1,
+                pile_charging_total_fee = 2.1,
+                pile_charging_total_quantity = 2.3,
+                pile_service_total_fee = 2.3,
+                pile_total_fee = 2.34
+            )
         )
     }
 
     private val flowersLiveData = MutableLiveData(initialFlowerList)
 
     /* Adds flower to liveData and posts value. */
-    fun addFlowers(flower: List<Report> ) {
+    fun addFlowers(flower: List<Report>) {
         val currentList = flowersLiveData.value
         if (currentList == null) {
             flowersLiveData.postValue(flower)
@@ -62,8 +62,8 @@ class ReportDataSource(resources: Resources) {
 
     /* Returns flower given an ID. */
     fun getFlowerForId(id: Int): Report? {
-        flowersLiveData.value?.let { reports->
-            return reports.firstOrNull{ it.pile_id == id}
+        flowersLiveData.value?.let { reports ->
+            return reports.firstOrNull { it.pile_id == id }
         }
         return null
     }

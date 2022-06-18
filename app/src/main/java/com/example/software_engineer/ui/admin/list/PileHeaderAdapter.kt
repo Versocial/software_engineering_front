@@ -1,5 +1,3 @@
-
-
 package com.example.software_engineer.ui.admin.list
 
 import android.view.LayoutInflater
@@ -10,15 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.software_engineer.R
 
 
-class PileHeaderAdapter: RecyclerView.Adapter<PileHeaderAdapter.HeaderViewHolder>() {
+class PileHeaderAdapter : RecyclerView.Adapter<PileHeaderAdapter.HeaderViewHolder>() {
     private var pileCount: Int = 0
 
     /* ViewHolder for displaying header. */
-    class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view){
+    class HeaderViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val IsWorkTextView: TextView = itemView.findViewById(R.id.head_is_work)
         private val TotalCountTextView: TextView = itemView.findViewById(R.id.head_total_count)
         private val TotalTimeTextView: TextView = itemView.findViewById(R.id.head_total_time)
-        private val TotalQuantityTextView: TextView = itemView.findViewById(R.id.head_total_quantity)
+        private val TotalQuantityTextView: TextView =
+            itemView.findViewById(R.id.head_total_quantity)
 
         fun bind(flowerCount: Int) {
 
