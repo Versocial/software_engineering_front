@@ -38,13 +38,14 @@ class ReportDataSource(resources: Resources) {
     private val flowersLiveData = MutableLiveData(initialFlowerList)
 
     /* Adds flower to liveData and posts value. */
-    fun addFlower(flower: Report) {
+    fun addFlowers(flower: List<Report> ) {
         val currentList = flowersLiveData.value
         if (currentList == null) {
-            flowersLiveData.postValue(listOf(flower))
+            flowersLiveData.postValue(flower)
         } else {
             val updatedList = currentList.toMutableList()
-            updatedList.add(0, flower)
+//            updatedList.add( flower)
+            updatedList.addAll(flower)
             flowersLiveData.postValue(updatedList)
         }
     }

@@ -24,42 +24,36 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.software_engineer.R
-import com.example.software_engineer.ui.admin.Pile
 import com.example.software_engineer.ui.admin.Report
 
 class ReportDetailAdapter() :
     ListAdapter<Report, ReportDetailAdapter.DetailAdapter>(ReportDiffCallback) {
 
 
-
-    class DetailAdapter(itemView: View ) :
+    class DetailAdapter(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-//        private val WorkTextView: TextView = itemView.findViewById(R.id.is_work)
-//        private val PileTextView: TextView = itemView.findViewById(R.id.pile_id)
-//        private val HeadTotalTextView: TextView = itemView.findViewById(R.id.head_total_count)
-//        private val HeadTotalTime: TextView = itemView.findViewById(R.id.head_total_time)
-//        private val HeadQuantityTextView: TextView = itemView.findViewById(R.id.head_total_quantity)
 
-    private val ReportTime:TextView=itemView.findViewById(R.id.report_time)
-        private val PileID:TextView=itemView.findViewById(R.id.report_pile_id)
-        private val TotalCount:TextView=itemView.findViewById(R.id.report_total_count)
-        private val TotalTime:TextView=itemView.findViewById(R.id.report_total_time)
-        private val TotalQuantity:TextView=itemView.findViewById(R.id.report_total_quantity)
-        private val TotalFee:TextView=itemView.findViewById(R.id.report_total_fee)
-        private val TotalServiceFee:TextView=itemView.findViewById(R.id.report_service_total_fee)
-        private val PileTotalFee:TextView=itemView.findViewById(R.id.pile_total_fee)
+        private val ReportTime: TextView = itemView.findViewById(R.id.report_time)
+        private val PileID: TextView = itemView.findViewById(R.id.report_pile_id)
+        private val TotalCount: TextView = itemView.findViewById(R.id.report_total_count)
+        private val TotalTime: TextView = itemView.findViewById(R.id.report_total_time)
+        private val TotalQuantity: TextView = itemView.findViewById(R.id.report_total_quantity)
+        private val TotalFee: TextView = itemView.findViewById(R.id.report_total_fee)
+        private val TotalServiceFee: TextView = itemView.findViewById(R.id.report_service_total_fee)
+        private val PileTotalFee: TextView = itemView.findViewById(R.id.pile_total_fee)
         private var currentPile: Report? = null
 
 
         fun bind(pile: Report) {
             currentPile = pile
-           PileID.text=pile.pile_id.toString()
-            TotalCount.text=pile.pile_charging_total_count.toString()
-            TotalTime.text=pile.pile_charging_total_time
-            TotalQuantity.text=pile.pile_charging_total_quantity.toString()
-            TotalFee.text=pile.pile_charging_total_fee.toString()
-            TotalServiceFee.text=pile.pile_service_total_fee.toString()
-            PileTotalFee.text=pile.pile_total_fee.toString()
+            PileID.text = pile.pile_id.toString()
+            ReportTime.text = pile.time.toString()
+            TotalCount.text = pile.pile_charging_total_count.toString()
+            TotalTime.text = pile.pile_charging_total_time
+            TotalQuantity.text = pile.pile_charging_total_quantity.toString()
+            TotalFee.text = pile.pile_charging_total_fee.toString()
+            TotalServiceFee.text = pile.pile_service_total_fee.toString()
+            PileTotalFee.text = pile.pile_total_fee.toString()
 
         }
     }
@@ -68,7 +62,7 @@ class ReportDetailAdapter() :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DetailAdapter {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.report_detail_item, parent, false)
-        return DetailAdapter(view )
+        return DetailAdapter(view)
     }
 
     /* Gets current flower and uses it to bind view. */
@@ -77,12 +71,13 @@ class ReportDetailAdapter() :
         holder.bind(flower)
     }
 }
+
 object ReportDiffCallback : DiffUtil.ItemCallback<Report>() {
     override fun areItemsTheSame(oldItem: Report, newItem: Report): Boolean {
         return oldItem == newItem
     }
 
     override fun areContentsTheSame(oldItem: Report, newItem: Report): Boolean {
-        return oldItem.pile_id== newItem.pile_id
+        return oldItem.pile_id == newItem.pile_id
     }
 }

@@ -29,21 +29,13 @@ class ReportListViewModel(val reportDataSource: ReportDataSource) : ViewModel() 
     val flowersLiveData = reportDataSource.getFlowerList()
 
 //    /* If the name and description are present, create new Flower and add it to the datasource */
-//    fun insertFlower(flowerName: String?, flowerDescription: String?) {
-//        if (flowerName == null || flowerDescription == null) {
-//            return
-//        }
-//
-//        val newFlower = Pile(
-//            Random.nextLong(),
-//            flowerName,
-//            image,
-//            flowerDescription
-//        )
-//
-//        dataSource.addFlower(newFlower)
-//    }
-//}
+    fun insertFlowers(report: List<Report>) {
+
+        val newFlower = report
+
+        reportDataSource.addFlowers(newFlower)
+    }
+
 }
 
 class ReportListViewModelFactory(private val context: Context) : ViewModelProvider.Factory {

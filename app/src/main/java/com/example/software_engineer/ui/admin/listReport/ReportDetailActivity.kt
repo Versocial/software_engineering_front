@@ -26,43 +26,46 @@ class ReportDetailActivity : AppCompatActivity() {
 
         val recyclerView: RecyclerView=findViewById(R.id.recycler_report_view)
         recyclerView.adapter=concatAdapter
-        extraData=listOf(
-            Report(
-                time = "ddsadasdasdas",
-                pile_charging_total_time = "dsa",
-                pile_id = 1,
-                pile_charging_total_count = 1,
-                pile_charging_total_fee = 2.1,
-                pile_charging_total_quantity = 2.3,
-                pile_service_total_fee = 2.3,
-                pile_total_fee = 2.34
-            ),
+        extraData= intent.getBundleExtra("extra_data")?.get("reports") as List<Report>
+//        val reports= extraData?.get("reports")
+//        extraData=listOf(
+//            Report(
+//                time = "ddsadasdasdas",
+//                pile_charging_total_time = "ddd",
+//                pile_id = 1,
+//                pile_charging_total_count = 1,
+//                pile_charging_total_fee = 2.1,
+//                pile_charging_total_quantity = 2.3,
+//                pile_service_total_fee = 2.3,
+//                pile_total_fee = 2.34
+//            ),
+//
+//            Report(
+//                time = "aaaaaaaaa",
+//                pile_charging_total_time = "bbbb",
+//                pile_id = 1,
+//                pile_charging_total_count = 1,
+//                pile_charging_total_fee = 2.1,
+//                pile_charging_total_quantity = 2.3,
+//                pile_service_total_fee = 2.3,
+//                pile_total_fee = 2.34
+//            ),
+//                    Report(
+//                    time = "bbbbbbb",
+//            pile_charging_total_time = "eeee",
+//            pile_id = 1,
+//            pile_charging_total_count = 1,
+//            pile_charging_total_fee = 2.1,
+//            pile_charging_total_quantity = 2.3,
+//            pile_service_total_fee = 2.3,
+//            pile_total_fee = 2.34
+//        )
+//        )
+        flowersListViewModel.insertFlowers(extraData)
+//        for (i in extraData.indices){
+//            flowersListViewModel.insertFlower(extraData)
 
-            Report(
-                time = "aaaaaaaaa",
-                pile_charging_total_time = "dsa",
-                pile_id = 1,
-                pile_charging_total_count = 1,
-                pile_charging_total_fee = 2.1,
-                pile_charging_total_quantity = 2.3,
-                pile_service_total_fee = 2.3,
-                pile_total_fee = 2.34
-            ),
-                    Report(
-                    time = "bbbbbbb",
-            pile_charging_total_time = "dsa",
-            pile_id = 1,
-            pile_charging_total_count = 1,
-            pile_charging_total_fee = 2.1,
-            pile_charging_total_quantity = 2.3,
-            pile_service_total_fee = 2.3,
-            pile_total_fee = 2.34
-        )
-        )
-        for (i in extraData.indices){
-            Log.d(TAG, "onCreate: sdsadassd")
-            flowersListViewModel.reportDataSource.addFlower(extraData[i])
-        }
+//        }
 //        val reports= extraData?.get("reports")
         flowersListViewModel.flowersLiveData.observe(this, {
             it?.let {
