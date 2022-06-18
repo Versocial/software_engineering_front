@@ -10,6 +10,7 @@ import com.example.software_engineer.ui.admin.list.*
 
 class CarDetailActivity : AppCompatActivity() {
 
+    lateinit var extraData:List<CarInfo>
     private val flowersListViewModel by viewModels<CarListViewModel> {
         CarListViewModelFactory(this)
     }
@@ -23,6 +24,8 @@ class CarDetailActivity : AppCompatActivity() {
         val recyclerView: RecyclerView=findViewById(R.id.recycler_view)
         recyclerView.adapter=concatAdapter
 
+        extraData= intent.getBundleExtra("extra_data")?.get("cars") as List<CarInfo>
+        flowersListViewModel.insertFlowers(extraData)
         flowersListViewModel.flowersLiveData.observe(this, {
             it?.let {
                 detailAdapter.submitList(it as MutableList<CarInfo>)

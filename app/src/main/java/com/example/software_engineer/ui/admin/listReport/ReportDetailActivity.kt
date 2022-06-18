@@ -27,6 +27,7 @@ class ReportDetailActivity : AppCompatActivity() {
         val recyclerView: RecyclerView=findViewById(R.id.recycler_report_view)
         recyclerView.adapter=concatAdapter
         extraData= intent.getBundleExtra("extra_data")?.get("reports") as List<Report>
+        flowersListViewModel.insertFlowers(extraData)
 //        val reports= extraData?.get("reports")
 //        extraData=listOf(
 //            Report(
@@ -61,7 +62,6 @@ class ReportDetailActivity : AppCompatActivity() {
 //            pile_total_fee = 2.34
 //        )
 //        )
-        flowersListViewModel.insertFlowers(extraData)
 //        for (i in extraData.indices){
 //            flowersListViewModel.insertFlower(extraData)
 

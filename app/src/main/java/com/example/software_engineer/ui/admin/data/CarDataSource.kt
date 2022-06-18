@@ -4,6 +4,7 @@ import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.software_engineer.ui.admin.CarInfo
+import com.example.software_engineer.ui.admin.Report
 
 class CarDataSource(resources: Resources) {
     private val initialFlowerList = flowerList(resources)
@@ -22,17 +23,18 @@ return listOf(
 
     private val flowersLiveData = MutableLiveData(initialFlowerList)
 
-    /* Adds flower to liveData and posts value. */
-    fun addFlower(flower: CarInfo) {
+    fun addFlowers(flower: List<CarInfo> ) {
         val currentList = flowersLiveData.value
         if (currentList == null) {
-            flowersLiveData.postValue(listOf(flower))
+            flowersLiveData.postValue(flower)
         } else {
             val updatedList = currentList.toMutableList()
-            updatedList.add(0, flower)
+//            updatedList.add( flower)
+            updatedList.addAll(flower)
             flowersLiveData.postValue(updatedList)
         }
     }
+    /* Adds flower to liveData and posts value. */
 
     /* Removes flower from liveData and posts value. */
     fun removeFlower(flower: CarInfo) {

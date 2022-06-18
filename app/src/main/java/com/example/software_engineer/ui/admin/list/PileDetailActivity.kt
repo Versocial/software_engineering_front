@@ -13,6 +13,7 @@ import com.example.software_engineer.ui.admin.list.PileListViewModel
 
 class PileDetailActivity : AppCompatActivity() {
 
+    lateinit var extraData:List<Pile>
     private val flowersListViewModel by viewModels<PileListViewModel> {
         FlowersListViewModelFactory(this)
     }
@@ -25,7 +26,8 @@ class PileDetailActivity : AppCompatActivity() {
 
         val recyclerView: RecyclerView=findViewById(R.id.recycler_view)
         recyclerView.adapter=concatAdapter
-
+        extraData= intent.getBundleExtra("extra_data")?.get("piles") as List<Pile>
+        flowersListViewModel.insertFlowers(extraData)
         flowersListViewModel.flowersLiveData.observe(this, {
             it?.let {
                 detailAdapter.submitList(it as MutableList<Pile>)

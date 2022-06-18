@@ -3,6 +3,7 @@ package com.example.software_engineer.ui.admin.data
 import android.content.res.Resources
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.software_engineer.ui.admin.CarInfo
 import com.example.software_engineer.ui.admin.Pile
 
 class PileDataSource(resources: Resources) {
@@ -78,6 +79,16 @@ return listOf(
 
     private val flowersLiveData = MutableLiveData(initialFlowerList)
 
+    fun addFlowers(flower: List<Pile>) {
+        val currentList = flowersLiveData.value
+        if (currentList == null) {
+            flowersLiveData.postValue(flower)
+        } else {
+            val updatedList = currentList.toMutableList()
+            updatedList.addAll(flower)
+            flowersLiveData.postValue(updatedList)
+        }
+    }
     /* Adds flower to liveData and posts value. */
     fun addFlower(flower: Pile) {
         val currentList = flowersLiveData.value

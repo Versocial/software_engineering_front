@@ -176,10 +176,27 @@ class AdminFragment : Fragment() {
                         response: Response<PileCarResp>
                     ) {
                         runOnUiThread {
+
+
                             val intent=Intent(context,CarDetailActivity::class.java)
-                            startActivity(intent)
+                            val bundle=Bundle()
+//                        (response.body() as ReportResp).apply {
+//                            bundle.putSerializable("reports", response.body()!!.reports as Serializable)
+//                        }
+                            response.body()?: let{
+                                Toast.makeText(context, "empty pile",Toast.LENGTH_SHORT).show()
+                                return@runOnUiThread}
+                                var t =response.body() as PileCarResp
+                                t.let {
+
+                                    bundle.putSerializable("cars",t.cars as Serializable)
+                                    intent.putExtra("extra_data",bundle)
+                                    startActivity(intent)
+                                }
+                            }
+
                         }
-                    }
+
                 }
             )
         }

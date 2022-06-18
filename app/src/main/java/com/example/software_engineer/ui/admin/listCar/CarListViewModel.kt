@@ -19,6 +19,8 @@ package com.example.software_engineer.ui.admin.list
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.software_engineer.ui.admin.CarInfo
+import com.example.software_engineer.ui.admin.Report
 import com.example.software_engineer.ui.admin.data.CarDataSource
 import com.example.software_engineer.ui.admin.data.PileDataSource
 
@@ -42,6 +44,12 @@ class CarListViewModel(val carDataSource: CarDataSource) : ViewModel() {
 //        dataSource.addFlower(newFlower)
 //    }
 //}
+fun insertFlowers(report: List<CarInfo>) {
+
+    val newFlower = report
+
+    carDataSource.addFlowers(newFlower)
+}
 }
 
 class CarListViewModelFactory(private val context: Context) : ViewModelProvider.Factory {
